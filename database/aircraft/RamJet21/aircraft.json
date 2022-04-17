@@ -1,0 +1,9 @@
+{
+    "aircraft_name": "test_propulsion",
+    "aircraft_information": {
+        "new_propulsion": "RamJet"
+    },
+    "module_information": {
+        "new_propulsion": "RamJet21"
+    }
+}

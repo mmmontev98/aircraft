@@ -1,0 +1,59 @@
+{
+    "aircraft_name": "TurboJet21",
+    "aircraft_information": {
+        "propulsion": "TurboJet",
+        "new_propulsion": "TurboJet"
+    },
+    "new_propulsion": {
+        "mean_R": 288.3,
+        "specific_heat_ratio_a": 1.40,
+        "cp": 1.11,
+        "PC": 45000,
+        "components":{
+            "intake":{
+                "type": "intake",
+                "stream_id": 1,
+                "efficiency": 0.97,
+                "specific_heat_ratio": 1.40,
+                "polynomial_rotation_efficiency": [1]
+            },
+            "compressor":{
+                "type": "compressor",
+                "stream_id": 1,
+                "efficiency": 0.85,
+                "specific_heat_ratio": 1.37,
+                "pressure_ratio": 20,
+                "air_passage_ratio": 0,
+                "polynomial_rotation_efficiency": [1],
+                "polynomial_rotation_pressure_ratio": [1]
+            },
+            "combustor":{
+                "type": "combustor",
+                "stream_id": 1,
+                "efficiency": 1.0,
+                "specific_heat_ratio": 1.35,
+                "outlet_temperature": 1600,
+                "cp": 1.11,
+                "PCI": 45000,
+                "polynomial_rotation_efficiency": [1],
+                "polynomial_rotation_outlet_temperature": [1]
+            },
+            "turbine_compressor":{
+                "type": "turbine",
+                "stream_id": 1,
+                "efficiency": 0.90,
+                "specific_heat_ratio": 1.33,
+                "polynomial_rotation_efficiency": [1],
+                "linked_component": "compressor"
+            },
+            "nozzle_hot_air":{
+                "type": "nozzle",
+                "stream_id": 1,
+                "efficiency": 0.98,
+                "specific_heat_ratio": 1.36,
+                "mean_R": 288.3,
+                "polynomial_rotation_efficiency": [1]
+            }
+        }
+    }
+}

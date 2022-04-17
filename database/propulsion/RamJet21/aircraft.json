@@ -1,0 +1,41 @@
+{
+    "aircraft_name": "RamJet21",
+    "aircraft_information": {
+        "propulsion": "RamJet",
+        "new_propulsion": "RamJet"
+    },
+    "new_propulsion": {
+        "mean_R": 288.3,
+        "specific_heat_ratio_a": 1.40,
+        "cp": 1.11,
+        "PC": 45000,
+        "components":{
+            "intake":{
+                "type": "intake",
+                "stream_id": 1,
+                "efficiency": 0.97,
+                "specific_heat_ratio": 1.40,
+                "polynomial_rotation_efficiency": [1]
+            },
+            "combustor":{
+                "type": "combustor",
+                "stream_id": 1,
+                "efficiency": 1.0,
+                "specific_heat_ratio": 1.35,
+                "outlet_temperature": 1600,
+                "cp": 1.11,
+                "PCI": 45000,
+                "polynomial_rotation_efficiency": [1],
+                "polynomial_rotation_outlet_temperature": [1]
+            },
+            "nozzle_hot_air":{
+                "type": "nozzle",
+                "stream_id": 1,
+                "efficiency": 0.98,
+                "specific_heat_ratio": 1.36,
+                "mean_R": 288.3,
+                "polynomial_rotation_efficiency": [1]
+            }
+        }
+    }
+}
