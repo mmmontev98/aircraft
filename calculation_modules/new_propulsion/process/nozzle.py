@@ -23,7 +23,5 @@ class NozzleProcess(GenericPropulsionProcess):
 
         u_s = (2*efficiency*(1/exp)*R*inlet_temperature*(1 - (self.P_out/inlet_pressure)**exp))**(1/2)
 
-        
-
         return u_s
     

@@ -20,6 +20,9 @@ class Propulsion(GenericPropulsion):
     def set_PC(self, PC):
         self.PC = PC
     
+    def set_air_passage_ratio(self, air_passage_ratio):
+        return self.fan.set_air_passage_ratio(air_passage_ratio)
+    
     def get_specific_heat_ratio_a(self):
         return self.specific_heat_ratio_a
     
@@ -40,6 +43,9 @@ class Propulsion(GenericPropulsion):
 
     def get_fan_module(self) -> Fan:
         return self.fan
+
+    def get_component(self, stream_id, component_name):
+        return self.get_component_stream().get_component(stream_id, component_name)
 
     def add_component(self, component):
         self.component_streams.add_component(component)

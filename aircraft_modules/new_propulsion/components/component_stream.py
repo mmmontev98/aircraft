@@ -23,6 +23,10 @@ class ComponentStream():
     
     def get_number_of_streams(self):
         return len(self.streams)
+
+    def get_component(self, stream_id, component_name):
+
+        return self.streams[stream_id][component_name]
     
     def get_streams(self) -> dict[str: [GenericPropulsionComponent]]:
         return self.streams
