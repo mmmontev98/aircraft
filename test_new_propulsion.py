@@ -11,8 +11,8 @@ def main():
     ''' Analysis Parameters'''
     mach = 0
     # mach = 0.85
-    # Pa = 18.75#*(10**3)
-    Pa = 101.63#*(10**3)
+    # Pa = 18.75
+    Pa = 101.63
     Po = Pa
     # Ta = 216.7
     Ta = 290
@@ -28,8 +28,6 @@ def main():
 
     propulsion_results.print_all()
     
-
-
 
 def load_aircraft(aircraft_name):
     ''' Import Propulsion from file'''

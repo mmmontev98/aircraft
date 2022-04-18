@@ -12,7 +12,7 @@ aircraft.load_aircraft()
 
 ''' Analysis Parameters'''
 mach = 0.85
-Pa = 18.75#*(10**3)
+Pa = 18.75
 Po = Pa
 Ta = 216.7
 N_2 = 0.8
@@ -34,15 +34,4 @@ propulsion_wrapper.compute()
 propulsion_results = propulsion_wrapper.get_results()
 
 propulsion_results.print_all()
-
-# T_0 = propulsion_results.get_T_0()
-# P_0 = propulsion_results.get_P_0()
-# outlet_speed = propulsion_results.get_outlet_speed()
-# fuel_air_ratio = propulsion_results.get_fuel_air_ratio()
-# specific_thrust = propulsion_results.get_specific_thrust()
-# TSFC = propulsion_results.get_TSFC()
-# thermal_efficiency = propulsion_results.get_thermal_efficiency()
-# total_efficiency = propulsion_results.get_total_efficiency()
-# propulsion_efficiency = propulsion_results.get_propulsion_efficiency()
-
  
