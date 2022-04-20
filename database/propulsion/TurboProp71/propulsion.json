@@ -39,6 +39,7 @@
             "stream_id": 1,
             "efficiency": 0.90,
             "specific_heat_ratio": 1.33,
+            "cp": 1.16,
             "pressure_ratio": 2.87,
             "polynomial_rotation_efficiency": [1.9062E+01, -5.2456E+01, 4.7887E+01, -1.3489E+01],
             "polynomial_rotation_pressure_ratio": [-1.8063E+01, 4.2469E+01, -3.1480E+01, 8.0681E+00]

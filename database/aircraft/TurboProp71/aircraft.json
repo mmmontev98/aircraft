@@ -1,9 +1,9 @@
 {
     "aircraft_name": "test_propulsion",
     "aircraft_information": {
-        "new_propulsion": "TurboJet"
+        "propulsion": "TurboProp"
     },
     "module_information": {
-        "new_propulsion": "TurboProp71"
+        "propulsion": "TurboProp71"
     }
 }

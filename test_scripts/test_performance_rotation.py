@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from aircraft import Aircraft
-from calculation_modules.new_propulsion.propulsion_wrapper import PropulsionWrapper
+from calculation_modules.propulsion.propulsion_wrapper import PropulsionWrapper
 
 def main():
     ''' Component Parameters'''

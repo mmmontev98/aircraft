@@ -7,7 +7,7 @@ from aircraft_modules import Propulsion
 
 class Aircraft():
     ''' Object that groups all the aircraft characteristics'''
-    list_of_modules = ['new_propulsion']
+    list_of_modules = ['propulsion']
     def __init__(self, aircraft_name='aircraft', dir_path=None, aircraft_config=None):
         # Default value (a dir_path ends with a '/')
         if dir_path is None:
@@ -39,7 +39,7 @@ class Aircraft():
     def get_standard_aircraft_config(self):
         aircraft_config = {}
 
-        aircraft_config['new_propulsion'] = 'Propulsion'
+        aircraft_config['propulsion'] = 'Propulsion'
 
         return aircraft_config
 
@@ -79,11 +79,11 @@ class Aircraft():
         """ Just a wrapping function for each individual module creation """
         getattr(self, 'create_' + module + '_module')(module_name)
     
-    def create_new_propulsion_module(self, module_name):
-        self.new_propulsion_module = Propulsion()
+    def create_propulsion_module(self, module_name):
+        self.propulsion_module = Propulsion()
 
-    def get_new_propulsion_module(self):
-        return self.new_propulsion_module
+    def get_propulsion_module(self):
+        return self.propulsion_module
 
     # =========================================================================== #
     # ==========================  SAVE & LOAD FUNCTIONS  ======================== #

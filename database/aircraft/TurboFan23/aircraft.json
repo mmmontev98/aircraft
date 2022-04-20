@@ -1,9 +1,9 @@
 {
     "aircraft_name": "test_propulsion",
     "aircraft_information": {
-        "new_propulsion": "TurboFan"
+        "propulsion": "TurboFan"
     },
     "module_information": {
-        "new_propulsion": "TurboFan23"
+        "propulsion": "TurboFan23"
     }
 }

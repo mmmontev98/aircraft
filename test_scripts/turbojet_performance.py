@@ -1,9 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from aircraft import Aircraft
-from aircraft_modules import new_propulsion
-from aircraft_modules.new_propulsion.components import component_stream
-from calculation_modules.new_propulsion.propulsion_wrapper import PropulsionWrapper
+from aircraft_modules import propulsion
+from aircraft_modules.propulsion.components import component_stream
+from calculation_modules.propulsion.propulsion_wrapper import PropulsionWrapper
 
 def main():
     ''' Component Parameters'''
@@ -19,10 +19,10 @@ def main():
     rotation_flag = False
 
     aircraft = load_aircraft(aircraft_name)
-    new_propulsion_module = aircraft.get_new_propulsion_module()
+    propulsion_module = aircraft.get_propulsion_module()
     
-    compressor = new_propulsion_module.get_component(1, 'compressor')
-    combustor = new_propulsion_module.get_component(1, 'combustor')
+    compressor = propulsion_module.get_component(1, 'compressor')
+    combustor = propulsion_module.get_component(1, 'combustor')
 
     fig1 = plt.figure(figsize=(1,3))
     fig1.suptitle("specific_thrust")
