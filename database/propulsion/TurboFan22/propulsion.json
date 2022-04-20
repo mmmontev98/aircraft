@@ -65,7 +65,6 @@
             "stream_id": 1,
             "efficiency": 0.98,
             "specific_heat_ratio": 1.36,
-            "mean_R": 288.3,
             "polynomial_rotation_efficiency": [1]
         },
         "nozzle_fan":{
@@ -73,7 +72,6 @@
             "stream_id": 2,
             "efficiency": 0.98,
             "specific_heat_ratio": 1.40,
-            "mean_R": 288.3,
             "polynomial_rotation_efficiency": [1]
         }
     }

@@ -1,10 +1,11 @@
 from abc import ABC, abstractclassmethod
 
 class GenericPropulsionProcess(ABC):
-    def __init__(self, parameters, component):
-        self.component_module = component
-        self.parameters = parameters
-        self.rotation_flag = parameters.get_rotation_flag()
+    def __init__(self):
+        # self.component_module = component
+        # self.parameters = parameters
+        # self.rotation_flag = parameters.get_rotation_flag()
+        self.linked_component_process = None
     
     @abstractclassmethod
     def get_thermodynamic_state(self):

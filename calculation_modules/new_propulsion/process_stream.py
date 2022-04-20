@@ -6,7 +6,7 @@ from aircraft_modules.new_propulsion.components import Booster, Combustor, Compr
 from aircraft_modules.new_propulsion.components import Intake, Nozzle, PostCombustor, Turbine
 
 from .process import GenericPropulsionProcess
-from .process import IntakeProcess, CompressionProcess, CombustionProcess, TurbineProcess, NozzleProcess
+from .process import IntakeProcess, CompressionProcess, CombustionProcess, ExpansionProcess, NozzleProcess
 
 
 class ProcessStream():
@@ -49,7 +49,7 @@ class ProcessStream():
         elif isinstance(component, (Compressor, Fan, Booster)):
             process_module = CompressionProcess(self.parameters, component)
         elif isinstance(component, Turbine):
-            process_module = TurbineProcess(self.parameters, component)        
+            process_module = ExpansionProcess(self.parameters, component)        
         elif isinstance(component, Nozzle):
             process_module = NozzleProcess(self.parameters, component)
         else:
