@@ -22,5 +22,8 @@ class SetFunctions():
     def set_compressor_rotation(self, compressor_rotation):
         self.parameters.set_compressor_rotation(compressor_rotation)
 
+    def set_mass_flow(self, mass_flow):
+        self.parameters.set_mass_flow(mass_flow)
+
     def set_rotation_flag(self, rotation_flag):
         self.parameters.set_rotation_flag(rotation_flag)

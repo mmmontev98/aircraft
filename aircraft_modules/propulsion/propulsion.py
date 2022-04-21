@@ -6,6 +6,7 @@ import json
 class Propulsion(GenericPropulsion):
     def __init__(self):
         self.component_module_list = []
+        self.fan = None
         self.component_streams = ComponentStream()
     
     def set_specific_heat_ratio_a(self, specific_heat_ratio_a):

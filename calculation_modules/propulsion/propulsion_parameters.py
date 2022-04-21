@@ -6,12 +6,17 @@ class PropulsionParameters():
     def __init__(self, aircraft_module=None):
         self.aircraft_module = aircraft_module
         self.rotation_flag = True
+        self.mass_flow = None
+        self.polynomial_rotation_mass_flow = [-6.6970E+00, 1.7001E+01, -1.2170E+01, 2.8717E+00]
     
     def set_aircraft_module(self, aircraft_module):
         self.aircraft_module = aircraft_module
     
     def set_mach(self, mach):
         self.mach = mach
+    
+    def set_mass_flow(self, mass_flow):
+        self.mass_flow = mass_flow
     
     def set_pressure_a(self, pressure_a):
         self.pressure_a = pressure_a
@@ -28,15 +33,23 @@ class PropulsionParameters():
     def set_compressor_rotation(self, rotation):
         self.rotation = rotation
 
-
     def set_rotation_flag(self, rotation_flag):
         self.rotation_flag = rotation_flag
+    
+    def set_polynomial_rotation_mass_flow(self, polynomial_rotation_mass_flow):
+        self.polynomial_rotation_mass_flow = polynomial_rotation_mass_flow
+    
+    def get_polynomial_rotation_mass_flow(self):
+        return self.polynomial_rotation_mass_flow
     
     def get_rotation_flag(self):
         return self.rotation_flag
 
     def get_aircraft_module(self):
         return self.aircraft_module
+
+    def get_mass_flow(self):
+        return self.mass_flow
     
     def get_propulsion_module(self) -> Propulsion:
         return self.aircraft_module.get_propulsion_module()

@@ -4,21 +4,23 @@ from calculation_modules.propulsion.propulsion_wrapper import PropulsionWrapper
 def main():
     ''' Component Parameters'''
     # aircraft_name = 'TurboJet21'
-    # aircraft_name = 'TurboFan23'
-    aircraft_name = 'TurboProp71'
+    aircraft_name = 'TurboFan23'
+    # aircraft_name = 'TurboProp71'
     # aircraft_name = 'TurboFan22'
     # aircraft_name = 'RamJet21' 
 
     ''' Analysis Parameters'''
     mach = 0
-    Pa = 101.3
+    Pa = 101.63
     Po = Pa
-    Ta = 288.15
+    Ta = 290
     N_2 = 0.941
-    rotation_flag=True
+    rotation_flag=False
+    # mass_flow = 8.49
+    mass_flow = 756
 
     aircraft = load_aircraft(aircraft_name)
-    propulsion_wrapper = set_propulsion_parameters(aircraft, mach, Pa, Po, Ta, N_2, rotation_flag)
+    propulsion_wrapper = set_propulsion_parameters(aircraft, mach, Pa, Po, Ta, N_2, rotation_flag, mass_flow)
     propulsion_wrapper.initialize()
     propulsion_wrapper.compute()
 
@@ -34,7 +36,7 @@ def load_aircraft(aircraft_name):
 
     return aircraft
 
-def set_propulsion_parameters(aircraft, mach, Pa, Po, Ta, N_2, rotation_flag):
+def set_propulsion_parameters(aircraft, mach, Pa, Po, Ta, N_2, rotation_flag, mass_flow):
     ''' Setting Computation Parameters'''
     propulsion_wrapper = PropulsionWrapper(aircraft)
     propulsion_wrapper.set_mach(mach)
@@ -43,6 +45,7 @@ def set_propulsion_parameters(aircraft, mach, Pa, Po, Ta, N_2, rotation_flag):
     propulsion_wrapper.set_temperature_a(Ta)
     propulsion_wrapper.set_compressor_rotation(N_2)
     propulsion_wrapper.set_rotation_flag(rotation_flag)
+    propulsion_wrapper.set_mass_flow(mass_flow)
     return propulsion_wrapper    
 
 def get_results(propulsion_wrapper):

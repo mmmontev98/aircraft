@@ -1,4 +1,5 @@
 from abc import abstractclassmethod, ABC
+import numpy as np
 
 from ..process import ProcessStream
 
@@ -51,9 +52,26 @@ class GenericPropulsionSubmodule(ABC):
         return dict_outlet_speed, dict_fuel_air_ratio
 
 
-    def correct_mass_flux(self, rotation):
-        return  -6.6970E+00*rotation**3 + 1.7001E+01*rotation**2 - 1.2170E+01*rotation + 2.8717E+00
-    
+    def get_rotation_mass_flow(self, rotation):
+        corrected_mass_flow = self.get_corrected_mass_flow()
+        if not self.parameters.get_rotation_flag():
+            return corrected_mass_flow
+        
+        polynomial_rotation_mass_flow = self.parameters.get_polynomial_rotation_mass_flow()
+        multiplier = np.polyval(polynomial_rotation_mass_flow, rotation)
+        rotation_mass_flow = corrected_mass_flow * multiplier
+
+        return rotation_mass_flow
+        
+    def get_corrected_mass_flow(self):
+        Ta = self.parameters.get_temperature_a()
+        Pa = self.parameters.get_pressure_a()
+        baseline_mass_flow = self.parameters.get_mass_flow()
+        corrected_mass_flow = baseline_mass_flow * (288.15/101.30) * (Pa/Ta)
+
+        return corrected_mass_flow
+        
+
     def get_rotation_air_passage_ratio(self, rotation):
         fan_module = self.parameters.get_fan_module()
         baseline_air_passage_ratio = fan_module.get_air_passage_ratio()

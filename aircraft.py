@@ -88,7 +88,7 @@ class Aircraft():
     # =========================================================================== #
     # ==========================  SAVE & LOAD FUNCTIONS  ======================== #
     # =========================================================================== #
-    def get_aircraft_dict(self, simplified_version=False):
+    def get_aircraft_dict(self):
         aircraft_dict = {}
         pass
 
@@ -98,7 +98,7 @@ class Aircraft():
         """
         pass
 
-    def load_aircraft(self, special_name=None):
+    def load_aircraft(self):
         load_dir_path = './database/aircraft/' + self.aircraft_name + '/'
 
         with open(load_dir_path + 'aircraft.json', 'r') as file:

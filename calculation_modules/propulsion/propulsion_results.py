@@ -6,6 +6,7 @@ class PropulsionResults():
     list_of_efficiencies = ['thermal_efficiency', 'propulsion_efficiency', 'total_efficiency']
     list_of_performance = ['specific_thrust', 'specific_power_turbine',  'fuel_air_ratio']
     list_of_fuel_consumption = ['TSFC', 'BSFC', 'EBSFC']
+    list_of_results = ['turbine_thrust', 'thrust', 'fuel_consumption']
     list_of_thermodynamic_states = ['T_0', 'P_0', 'outlet_speed']
     def __init__(self) -> None:
         self.dict_T_0 = {}
@@ -17,6 +18,9 @@ class PropulsionResults():
         self.EBSFC = None
         self.specific_thrust = None
         self.specific_power_turbine = None
+        self.thrust = None
+        self.turbine_thrust = None
+        self.fuel_consumption = None
 
 
 
@@ -34,7 +38,7 @@ class PropulsionResults():
         
     def set_specific_thrust(self, specific_thrust):
         self.specific_thrust = copy.deepcopy(specific_thrust)
-    
+
     def set_specific_power_turbine(self, specific_power_turbine):
         self.specific_power_turbine = copy.deepcopy(specific_power_turbine)
         
@@ -55,6 +59,24 @@ class PropulsionResults():
 
     def set_total_efficiency(self, total_efficiency):
         self.total_efficiency = copy.deepcopy(total_efficiency)
+
+    def set_thrust(self, thrust):
+        self.thrust = thrust
+
+    def set_turbine_thrust(self, turbine_thrust):
+        self.turbine_thrust = turbine_thrust
+
+    def set_fuel_consumption(self, fuel_consumption):
+        self.fuel_consumption = fuel_consumption
+    
+    def get_fuel_consumption(self):
+        return self.fuel_consumption
+    
+    def get_thrust(self):
+        return self.thrust
+    
+    def get_turbine_thrust(self):
+        return self.turbine_thrust
     
     def get_T_0(self):
         return copy.deepcopy(self.T_0)
@@ -113,6 +135,13 @@ class PropulsionResults():
         self.print_from_list(self.list_of_performance)
         print("-"*65)
 
+    def print_results(self):
+        print("-"*65)
+        print("Propulsion Results")
+        print("-"*65)
+        self.print_from_list(self.list_of_results)
+        print("-"*65)
+
     def print_fuel_consumption(self):
         print("-"*65)
         print("Fuel Consumption")
@@ -131,4 +160,5 @@ class PropulsionResults():
         self.print_efficiencies()
         self.print_performance()
         self.print_fuel_consumption()
+        self.print_results()
 
