@@ -22,7 +22,22 @@ class Propulsion(GenericPropulsion):
         self.PC = PC
     
     def set_air_passage_ratio(self, air_passage_ratio):
-        return self.fan.set_air_passage_ratio(air_passage_ratio)
+        self.fan.set_air_passage_ratio(air_passage_ratio)
+
+    def set_propeller_efficiency(self, propeller_efficiency):
+        self.propeller_efficiency = propeller_efficiency
+
+    def set_gearbox_power_ratio(self, gearbox_power_ratio):
+        self.gearbox_power_ratio = gearbox_power_ratio
+    
+    def get_gearbox_power_ratio(self):
+        return self.gearbox_power_ratio
+    
+    def get_propeller_efficiency(self):
+        return self.propeller_efficiency
+    
+    def get_air_passage_ratio(self):
+        return self.fan.get_air_passage_ratio()
     
     def get_specific_heat_ratio_a(self):
         return self.specific_heat_ratio_a
@@ -33,8 +48,6 @@ class Propulsion(GenericPropulsion):
     def get_cp(self):
         return self.cp
     
-    def get_air_passage_ratio(self):
-        return self.fan.get_air_passage_ratio()
     
     def get_PC(self):
         return self.PC

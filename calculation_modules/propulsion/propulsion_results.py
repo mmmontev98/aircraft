@@ -4,9 +4,9 @@ from unittest import result
 
 class PropulsionResults():
     list_of_efficiencies = ['thermal_efficiency', 'propulsion_efficiency', 'total_efficiency']
-    list_of_performance = ['specific_thrust', 'specific_power_turbine',  'fuel_air_ratio']
+    list_of_performance = ['specific_thrust', 'specific_power_turbine', 'turbine_power', 'fuel_air_ratio']
     list_of_fuel_consumption = ['TSFC', 'BSFC', 'EBSFC']
-    list_of_results = ['turbine_thrust', 'thrust', 'fuel_consumption']
+    list_of_results = ['propeller_thrust', 'thrust', 'fuel_consumption']
     list_of_thermodynamic_states = ['T_0', 'P_0', 'outlet_speed']
     def __init__(self) -> None:
         self.dict_T_0 = {}
@@ -19,7 +19,8 @@ class PropulsionResults():
         self.specific_thrust = None
         self.specific_power_turbine = None
         self.thrust = None
-        self.turbine_thrust = None
+        self.turbine_power = None
+        self.propeller_thrust = None
         self.fuel_consumption = None
 
 
@@ -63,8 +64,11 @@ class PropulsionResults():
     def set_thrust(self, thrust):
         self.thrust = thrust
 
-    def set_turbine_thrust(self, turbine_thrust):
-        self.turbine_thrust = turbine_thrust
+    def set_turbine_power(self, turbine_power):
+        self.turbine_power = turbine_power
+    
+    def set_propeller_thrust(self, propeller_thrust):
+        self.propeller_thrust = propeller_thrust
 
     def set_fuel_consumption(self, fuel_consumption):
         self.fuel_consumption = fuel_consumption
@@ -75,8 +79,11 @@ class PropulsionResults():
     def get_thrust(self):
         return self.thrust
     
-    def get_turbine_thrust(self):
-        return self.turbine_thrust
+    def get_turbine_power(self):
+        return self.turbine_power
+    
+    def get_propeller_thrust(self):
+        return self.propeller_thrust
     
     def get_T_0(self):
         return copy.deepcopy(self.T_0)

@@ -26,6 +26,7 @@ class TurboPropCompute(GenericPropulsionSubmodule):
 
         specific_power_turbine = self.compute_specific_power_turbine(total_fuel_air_ratio)
         specific_thrust = self.compute_specific_thrust(aircraft_speed, outlet_speed, total_fuel_air_ratio)
+        TSFC = self.compute_TSFC(aircraft_speed, outlet_speed, total_fuel_air_ratio)
         BSFC = self.compute_BSFC(total_fuel_air_ratio)
         EBSFC = self.compute_EBSFC(aircraft_speed, outlet_speed, total_fuel_air_ratio)
         
@@ -33,8 +34,9 @@ class TurboPropCompute(GenericPropulsionSubmodule):
         propulsion_efficiency = self.compute_propulsion_efficiency(aircraft_speed, outlet_speed, total_fuel_air_ratio)
         total_efficiency = self.compute_total_efficiency(aircraft_speed, outlet_speed, total_fuel_air_ratio)
         
-        thrust = self.compute_thrust(aircraft_speed, outlet_speed, total_fuel_air_ratio)
-        turbine_thrust = self.compute_thrust_turbine(total_fuel_air_ratio)
+        thrust = self.compute_hot_air_thrust(aircraft_speed, outlet_speed, total_fuel_air_ratio)
+        turbine_power = self.compute_power_turbine(total_fuel_air_ratio)
+        propeller_thrust = self.compute_thrust_propeller(aircraft_speed, total_fuel_air_ratio)
         fuel_consumption = self.compute_fuel_consumption(aircraft_speed, outlet_speed, total_fuel_air_ratio)
 
         
@@ -42,6 +44,7 @@ class TurboPropCompute(GenericPropulsionSubmodule):
         self.results.set_specific_thrust(specific_thrust)
         
         self.results.set_BSFC(BSFC)
+        self.results.set_TSFC(TSFC)
         self.results.set_EBSFC(EBSFC)
         
         self.results.set_thermal_efficiency(thermal_efficiency)
@@ -49,10 +52,11 @@ class TurboPropCompute(GenericPropulsionSubmodule):
         self.results.set_total_efficiency(total_efficiency)
         
         self.results.set_thrust(thrust)
-        self.results.set_turbine_thrust(turbine_thrust)
+        self.results.set_turbine_power(turbine_power)
+        self.results.set_propeller_thrust(propeller_thrust)
         self.results.set_fuel_consumption(fuel_consumption)
         
-    def compute_thrust(self, aircraft_speed, outlet_speed, fuel_air_ratio):
+    def compute_hot_air_thrust(self, aircraft_speed, outlet_speed, fuel_air_ratio):
         if self.parameters.get_mass_flow() is not None:
             rotation = self.parameters.get_compressor_rotation()
             specific_thrust = self.compute_specific_thrust(aircraft_speed, outlet_speed, fuel_air_ratio)
@@ -62,19 +66,40 @@ class TurboPropCompute(GenericPropulsionSubmodule):
         
         return None
     
-    def compute_thrust_turbine(self, fuel_air_ratio):
+    def compute_thrust_propeller(self, aircraft_speed, fuel_air_ratio):
+        propeller_efficiency = self.propulsion_module.get_propeller_efficiency()
+        propeller_power = self.compute_power_propeller(fuel_air_ratio)
+        if aircraft_speed > 0:
+            thrust_propeller = propeller_power*propeller_efficiency / aircraft_speed
+        else:
+            thrust_propeller = 0
+
+        
+        return thrust_propeller
+        
+
+    def compute_power_propeller(self, fuel_air_ratio):
+        power_turbine = self.compute_power_turbine(fuel_air_ratio)
+        gearbox_power_ratio = self.propulsion_module.get_gearbox_power_ratio()
+
+        propeller_power = power_turbine*gearbox_power_ratio
+
+        return propeller_power
+        
+    
+    def compute_power_turbine(self, fuel_air_ratio):
         if self.parameters.get_mass_flow() is not None:
             rotation = self.parameters.get_compressor_rotation()
-            specific_thrust_turbine = self.compute_specific_power_turbine(fuel_air_ratio)
             mass_flow = self.get_rotation_mass_flow(rotation)
-            thrust = specific_thrust_turbine * mass_flow
-            return thrust
+            specific_power_turbine = self.compute_specific_power_turbine(fuel_air_ratio)
+            power_turbine = specific_power_turbine * mass_flow
+            return power_turbine
         
         return None
 
     def compute_fuel_consumption(self, aircraft_speed, outlet_speed, fuel_air_ratio):
         if self.parameters.get_mass_flow() is not None:
-            thrust_turbine = self.compute_thrust_turbine(fuel_air_ratio)
+            thrust_turbine = self.compute_power_turbine(fuel_air_ratio)
             EBSFC = self.compute_EBSFC(aircraft_speed, outlet_speed, fuel_air_ratio)
             fuel_consumption = thrust_turbine * EBSFC
             return fuel_consumption
@@ -84,15 +109,24 @@ class TurboPropCompute(GenericPropulsionSubmodule):
 
     def compute_specific_thrust(self, aircraft_speed, outlet_speed, fuel_air_ratio):
         specific_thrust = (1 + fuel_air_ratio)*outlet_speed - aircraft_speed
-        return specific_thrust
+        return specific_thrust/1000
 
     def compute_specific_power_turbine(self, fuel_air_ratio):
         turbine_free = self.process_streams.get_component(1,'turbine_free')
         specific_work = turbine_free.get_specific_work()
-        specific_power_turbine = specific_work*(1 + fuel_air_ratio)
+        specific_power_turbine = (specific_work)*(1 + fuel_air_ratio)
 
         return specific_power_turbine
 
+    def compute_TSFC(self, aircraft_speed, outlet_speed, fuel_air_ratio):
+        if self.parameters.get_mass_flow() is not None:
+            rotation = self.parameters.get_compressor_rotation()
+            mass_flow = self.get_rotation_mass_flow(rotation)
+            thrust_hot_air = self.compute_hot_air_thrust(aircraft_speed, outlet_speed, fuel_air_ratio)
+            propeller_thrust = self.compute_thrust_propeller(aircraft_speed, fuel_air_ratio)
+            TSFC = fuel_air_ratio*mass_flow/(thrust_hot_air+propeller_thrust)
+        return TSFC
+    
     def compute_BSFC(self, fuel_air_ratio):
         specific_power_turbine = self.compute_specific_power_turbine(fuel_air_ratio)
         BSFC = fuel_air_ratio/specific_power_turbine

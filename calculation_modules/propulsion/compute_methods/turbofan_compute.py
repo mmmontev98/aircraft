@@ -67,7 +67,7 @@ class TurboFanCompute(GenericPropulsionSubmodule):
         
         specific_thrust = (1 + fuel_air_ratio)*outlet_speed_hot_air - aircraft_speed
         specific_thrust = specific_thrust + air_passage_ratio*(outlet_speed_fan - aircraft_speed)
-        return specific_thrust
+        return specific_thrust/1000
 
     def compute_TSFC(self, aircraft_speed, outlet_speed_hot_air, outlet_speed_fan, fuel_air_ratio):
         specific_thrust = self.compute_specific_thrust(aircraft_speed, outlet_speed_hot_air, outlet_speed_fan, fuel_air_ratio)
@@ -88,7 +88,7 @@ class TurboFanCompute(GenericPropulsionSubmodule):
     def compute_propulsion_efficiency(self, aircraft_speed, outlet_speed_hot_air, outlet_speed_fan, fuel_air_ratio):
         specific_thrust = self.compute_specific_thrust(aircraft_speed, outlet_speed_hot_air, outlet_speed_fan, fuel_air_ratio)
         outlet_speed_bar = self.compute_outlet_speed_bar(outlet_speed_hot_air, outlet_speed_fan, fuel_air_ratio)
-        air_passage_ratio = self.get_rotation_air_passage_ratio(self.rotation)
+        # air_passage_ratio = self.get_rotation_air_passage_ratio(self.rotation)
         
         propulsion_power = (specific_thrust*aircraft_speed)
         kinetic_energy_power = (1 + fuel_air_ratio) * (outlet_speed_bar**2/2) - aircraft_speed**2/2

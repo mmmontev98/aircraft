@@ -3,6 +3,8 @@
     "specific_heat_ratio_a": 1.40,
     "cp": 1.11,
     "PC": 45000,
+    "gearbox_power_ratio": 0.98,
+    "propeller_efficiency": 0.85,
     "components":{
         "intake":{
             "type": "intake",

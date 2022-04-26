@@ -4,20 +4,23 @@ from calculation_modules.propulsion.propulsion_wrapper import PropulsionWrapper
 def main():
     ''' Component Parameters'''
     # aircraft_name = 'TurboJet21'
-    aircraft_name = 'TurboFan23'
-    # aircraft_name = 'TurboProp71'
+    # aircraft_name = 'TurboFan23'
+    aircraft_name = 'TurboProp71'
     # aircraft_name = 'TurboFan22'
     # aircraft_name = 'RamJet21' 
 
     ''' Analysis Parameters'''
-    mach = 0
-    Pa = 101.63
+    mach = 0.45
+    # Pa = 101.63
+    Pa = 41
     Po = Pa
-    Ta = 290
-    N_2 = 0.941
-    rotation_flag=False
-    # mass_flow = 8.49
-    mass_flow = 756
+    Ta = 246.55
+    # Ta = 290
+    # N_2 = 0.941
+    N_2 = 0.85
+    rotation_flag=True
+    mass_flow = 8.49
+    # mass_flow = 756
 
     aircraft = load_aircraft(aircraft_name)
     propulsion_wrapper = set_propulsion_parameters(aircraft, mach, Pa, Po, Ta, N_2, rotation_flag, mass_flow)

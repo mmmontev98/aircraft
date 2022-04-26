@@ -33,7 +33,7 @@ class ExpansionProcess(GenericPropulsionProcess):
             outlet_pressure = inlet_pressure/pressure_ratio
             outlet_temperature = inlet_temperature*(1 - efficiency*(1 - (1/pressure_ratio)**exp))
 
-            self.specific_work_turbine = (inlet_temperature - outlet_temperature)*cp
+            self.specific_work_turbine = (inlet_temperature - outlet_temperature)*(cp)
 
         return (outlet_temperature, outlet_pressure)
 
