@@ -62,7 +62,7 @@ class TurboJetCompute(GenericPropulsionSubmodule):
 
     def compute_specific_thrust(self, aircraft_speed, outlet_speed, fuel_air_ratio):
         specific_thrust = (1 + fuel_air_ratio)*outlet_speed - aircraft_speed
-        return specific_thrust
+        return specific_thrust/1000
 
     def compute_TSFC(self, aircraft_speed, outlet_speed, fuel_air_ratio):
         specific_thrust = self.compute_specific_thrust(aircraft_speed, outlet_speed, fuel_air_ratio)
