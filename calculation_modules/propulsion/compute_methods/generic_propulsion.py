@@ -67,7 +67,7 @@ class GenericPropulsionSubmodule(ABC):
         Ta = self.parameters.get_temperature_a()
         Pa = self.parameters.get_pressure_a()
         baseline_mass_flow = self.parameters.get_mass_flow()
-        corrected_mass_flow = baseline_mass_flow * (288.15/101.30) * (Pa/Ta)
+        corrected_mass_flow = baseline_mass_flow * (288.15/101.325) * (Pa/Ta)
 
         return corrected_mass_flow
         

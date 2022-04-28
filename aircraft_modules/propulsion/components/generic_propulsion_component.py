@@ -50,7 +50,10 @@ class GenericPropulsionComponent():
         baseline_efficiency = self.get_efficiency()
         multiplier = np.polyval(polynomial_rotation_efficiency, rotation)
 
-        rotation_efficiency = baseline_efficiency * multiplier
+        if multiplier > 1:
+            multiplier = 1
+        
+        rotation_efficiency = baseline_efficiency * multiplier        
 
 
         return rotation_efficiency
