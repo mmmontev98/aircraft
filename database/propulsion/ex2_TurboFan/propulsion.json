@@ -1,0 +1,64 @@
+{
+    "mean_R": 288.3,
+    "specific_heat_ratio_a": 1.40,
+    "cp": 1.11,
+    "PC": 45000,
+    "components":{
+        "intake":{
+            "type": "intake",
+            "stream_id": [1,2],
+            "efficiency": 0.97,
+            "specific_heat_ratio": 1.40
+        },
+        "fan":{
+            "type": "fan",
+            "stream_id": [1, 2],
+            "efficiency": 0.85,
+            "specific_heat_ratio": 1.40,
+            "pressure_ratio": 1.4,
+            "air_passage_ratio": 0
+        },
+        "compressor":{
+            "type": "compressor",
+            "stream_id": 1,
+            "efficiency": 0.85,
+            "specific_heat_ratio": 1.37,
+            "pressure_ratio": 20
+        },
+        "combustor":{
+            "type": "combustor",
+            "stream_id": 1,
+            "efficiency": 1.00,
+            "specific_heat_ratio": 1.35,
+            "outlet_temperature": 1700,
+            "cp": 1.11,
+            "PCI": 45000
+        },
+        "turbine_compressor":{
+            "type": "turbine",
+            "stream_id": 1,
+            "efficiency": 0.9,
+            "specific_heat_ratio": 1.33,
+            "linked_component": "compressor"
+        },
+        "turbine_fan":{
+            "type": "turbine",
+            "stream_id": 1,
+            "efficiency": 0.9,
+            "specific_heat_ratio": 1.33,
+            "linked_component": "fan"
+        },
+        "nozzle_hot_air":{
+            "type": "nozzle",
+            "stream_id": 1,
+            "efficiency": 0.98,
+            "specific_heat_ratio": 1.36
+        },
+        "nozzle_fan":{
+            "type": "nozzle",
+            "stream_id": 2,
+            "efficiency": 0.98,
+            "specific_heat_ratio": 1.40
+        }
+    }
+}

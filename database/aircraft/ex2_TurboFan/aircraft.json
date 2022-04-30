@@ -1,0 +1,9 @@
+{
+    "aircraft_name": "test_propulsion",
+    "aircraft_information": {
+        "propulsion": "TurboFan"
+    },
+    "module_information": {
+        "propulsion": "ex2_TurboFan"
+    }
+}

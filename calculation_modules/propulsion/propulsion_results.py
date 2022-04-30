@@ -69,6 +69,9 @@ class PropulsionResults():
     
     def set_propeller_thrust(self, propeller_thrust):
         self.propeller_thrust = propeller_thrust
+    
+    def set_nozzle_thrust(self, nozzle_thrust):
+        self.nozzle_thrust = nozzle_thrust
 
     def set_fuel_consumption(self, fuel_consumption):
         self.fuel_consumption = fuel_consumption
@@ -84,6 +87,9 @@ class PropulsionResults():
     
     def get_propeller_thrust(self):
         return self.propeller_thrust
+
+    def get_nozzle_thrust(self):
+        return self.nozzle_thrust
     
     def get_T_0(self):
         return copy.deepcopy(self.T_0)
